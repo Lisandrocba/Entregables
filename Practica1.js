@@ -20,7 +20,16 @@ class Usuario{
         return console.log(mascota.length)
     }
 
+    addBook(autor,book){
+        if(this.libros.length === 0) 
+        this.libros = [{autor: autor, book: book}]    
+        else
+        this.libros = [...this.libros, {autor: autor, book: book}]
+    }
 
+    getBook(){
+        this.libros.map(libro => console.log(`nombre del autos: ${libro.autor}, nombre del libro: ${libro.book}`))
+    }
 }
 
 const usuario1 = new Usuario('lisandro', 'cordoba');
@@ -43,3 +52,7 @@ usuario1.addMascora(mascota1);
 usuario1.addMascora(mascota2);
 
 usuario1.getMascotas();
+usuario1.addBook('lisandro', 'libro')
+usuario1.addBook('jose', 'cuento')
+
+usuario1.getBook();
