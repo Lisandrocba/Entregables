@@ -1,0 +1,1 @@
+[{"title":"cafe","price":300,"thimbnail":"url.foto","id":1}]

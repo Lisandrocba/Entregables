@@ -45,7 +45,7 @@ import fs from 'fs';
 
 // async
 
-class Archivo {
+export class Archivo {
     productos=[];
     contenido;
     contador = 0;
@@ -54,9 +54,10 @@ class Archivo {
         this.nombre = nombre
     }
 
-    async leer(){
+    leer(){
         if(fs.existsSync(this.nombre)){
-            console.log(await fs.promises.readFile(this.nombre, 'utf-8'))
+            this.contenido =(fs.readFileSync(this.nombre, 'utf-8'))
+            return this.contenido
         }else{
             console.log(this.productos)
         }
@@ -72,7 +73,7 @@ class Archivo {
             this.productos.push(Object.assign(product, {id: this.contador}));
             try{
                 if(fs.existsSync(this.nombre)){
-                        this.contenido = fs.readFileSync(this.nombre, 'utf-8')
+                        this.contenido = fs.readFile(this.nombre, 'utf-8')
                         this.contenido = JSON.parse(this.contenido)
                         await fs.promises.unlink(this.nombre)
                         await fs.promises.writeFile(this.nombre, `${JSON.stringify(this.productos)}`)
@@ -93,7 +94,9 @@ const producto1 = { title: 'cafe', price: 300, thimbnail: 'url.foto'}
 const producto2 = { title: 'fideos', price: 180, thimbnail: 'url.foto2'}
 
 const archivo1 = new Archivo('productos.txt');
-//archivo1.guardar(producto1)
+archivo1.guardar(producto1)
 //archivo1.guardar(producto2)
+/*
+archivo1.leer() */
 
 
