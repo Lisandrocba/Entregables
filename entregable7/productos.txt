@@ -1,1 +1,1 @@
-[{"title":"cafe","price":300,"thimbnail":"url.foto","id":1}]
+[{"title":"cafe","price":300,"thimbnail":"url.foto","id":1},{"title":"fideos","price":180,"thimbnail":"url.foto2","id":2},{"title":"cerveza","price":380,"thimbnail":"url.foto3","id":3},{"title":"mani","price":80,"thimbnail":"url.foto4","id":4}]
