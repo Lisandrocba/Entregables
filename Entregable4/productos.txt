@@ -1,0 +1,1 @@
+[{"nombre":"papa","precio":"45","stock":"45","id":1},{"nombre":"coca","precio":"100","stock":"100","id":2},{"nombre":"fanta","precio":"150","stock":"15","id":3},{"nombre":"fideo","precio":"123","stock":"123","id":4}]
