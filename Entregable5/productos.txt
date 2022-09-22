@@ -1,0 +1,1 @@
+[{"id":1},{"id":2},{"id":3},{"id":4},{"nombreProducto":"Arroz","precioProducto":"123","stockProducto":"123","id":5},{"nombreProducto":"Polenta","precioProducto":"200","stockProducto":"15","id":6}]
