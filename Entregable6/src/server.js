@@ -6,13 +6,18 @@ const app = express()
 const httpServer = http.createServer(app)
 const socketServer = new SocketServer(httpServer)
 
-app.use(express.static('./src/vistas'))
-app.get('/',(req, res)=>{
-    res.sendFile('index.html')
-})
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use('/', require('./router'))
+app.set('views', './src/views')
+app.set('view engine', 'ejs')
+
+
 
 socketServer.on('connection',(client)=>{
-    console.log('usuario conectado')
+    client.on('chat', msj =>{
+        socketServer.emit('chat', msj)
+    })
 })
 
 
