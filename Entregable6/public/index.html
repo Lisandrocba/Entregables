@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  <body>
+    <h2 class="text-center mt-3">Lista de productos</h2>
+    <div class="container">
+        <form onsubmit="return addProd(this)">
+            <div>
+                <label class="form-label">Nombre del Producto</label>
+                <input class="form-control" id="nombreProducto" />
+            </div>
+            <div>
+                <label class="form-label">Precio del Producto</label>
+                <input class="form-control" id="precioProducto" />
+            </div>
+            <div>
+                <label class="form-label">Stock Producto</label>
+                <input class="form-control" id="stockProducto" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Agregar</button>
+        </form>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody id="listaProductos">
+              
+            </tbody>
+         </table>
+    </div>
+
+    <h2 class="text-center mt-5">Chat para clientes</h2>
+    <div class="container border mb-4">
+        <table class="table" style="height: 300px">
+            <thead>
+              <tr>
+                <th scope="col">Email</th>
+                <th scope="col">Mensaje</th>
+                <th scope="col">Hora</th>
+              </tr>
+            </thead>
+            <tbody id="chat">
+              
+            </tbody>
+         </table>
+    
+        <form class="row gx-5 container" onsubmit="return addMsj(this)">
+            <input type="text" id="email" class="col-3 m-1" placeholder="Email">
+            <input type="text" id="msj" class="col-6 m-1" placeholder="Ingrese su mensaje">
+            <input type="submit" class="col m-1" >
+        </form>
+    </div>
+
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,1 +1,0 @@
-[{"nombreProducto":"fideos","precioProducto":"200","stockProducto":"20","id":1},{"nombreProducto":"dsd","precioProducto":"fsdf","stockProducto":"sdfsdf","id":2}]
