@@ -1,5 +1,6 @@
 const express = require('express');
 const routerCarrito = express.Router();
+const fs = require('fs');
 
 let carrito = []
 
@@ -19,13 +20,12 @@ routerCarrito.get('/', (req, res)=>{
 
 routerCarrito.post('/', async (req, res)=>{
     try {
-        const { body } = req;
-        await reloadFile();
-        let date = new Date().getTime();
+        let date = new Date()
+        let timestamp = `dia: ${date.getDate()}/${date.getMonth() + 1} - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
         let id = carrito.length !== 0 ? carrito[carrito.length - 1].id + 1 : 1;
-        carrito.push({ id, date, producto:{...body} });
+        carrito.push(...carrito, { id, timestamp, producto:[] });
         fs.promises.writeFile("carrito.txt", JSON.stringify(carrito));
-        res.status(200).json({ mensaje: "producto agregado con exito", carrito });
+        res.status(200).json({ mensaje: "Carrito creado con exito, numero de id:", id });
       } catch (error) {
         res.status(400).json(error);
       }
@@ -38,7 +38,7 @@ routerCarrito.delete("/:id", async (req, res) => {
         const respuesta = carrito.filter(item => item.id !== parseInt(id))
         carrito = respuesta
         fs.promises.writeFile("carrito.txt", JSON.stringify(carrito));
-        res.status(200).json({ mensaje: "se elimino el producto con exito ", carrito });
+        res.status(200).json({ mensaje: "se elimino el carrito con exito ", carrito });
       } catch (error) {
         res.status(400).json(error);
       }
@@ -67,7 +67,7 @@ routerCarrito.delete("/:id", async (req, res) => {
         const respuesta = carritoId.producto.filter(item => item.id !== parseInt(id_prod))
         carrito.push({ ...carrito, respuesta });
         fs.promises.writeFile("carrito.txt", JSON.stringify(carrito));
-        res.status(200).json({ mensaje: "se elimino el producto con exito ", carrito });
+        res.status(200).json({ mensaje: "se elimino el carrito con exito ", carrito });
       } catch (error) {
         res.status(400).json(error);
       }

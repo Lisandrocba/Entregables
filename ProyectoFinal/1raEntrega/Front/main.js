@@ -50,6 +50,10 @@ function eliminarProducto(id){
     } ).then(res =>res.json()).then(data=>console.log(data)).catch(e=>console.log(e))
 }
 
+function crearCarrito(){
+    fetch(`http://localhost:8080/carrito`, {method: 'POST'}).then(res => res.json()).then(data=> console.log(data)).catch(e=> console.log(e))
+}
+
 if(!user){
     contenedorPagina.style.display = 'block';
     contenedorHome.style.display = 'none';
