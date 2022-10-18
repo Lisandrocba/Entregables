@@ -12,7 +12,7 @@ import {db} from '../dbConfig.js'
                 table.integer('chat').notNullable()
             })
         }
-        console.log('tabla creada con exito')
+        console.log('tabla chats creada con exito')
     }catch(e){
         console.log(e)
     }
