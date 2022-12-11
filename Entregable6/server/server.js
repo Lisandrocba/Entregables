@@ -20,7 +20,6 @@ io.on('connect',(socket)=>{
     socket.emit('productos', productos)
     socket.emit('listaChat', conversacion)
     socket.on('nuevoProducto', data =>{
-        console.log('llego')
         productos.push(data)
         io.sockets.emit('productos', productos)
     })

@@ -36,6 +36,7 @@ const renderChat =(chat)=>{
 }
 
 const addProd =(e)=>{
+    e.preventDefault()
     let payload = {
         nombreProducto : document.getElementById('nombreProducto').value,
         precioProducto : document.getElementById('precioProducto').value,
@@ -45,7 +46,8 @@ const addProd =(e)=>{
     socket.emit('nuevoProducto', payload)
 }
 
-const addMsj =()=>{
+const addMsj =(e)=>{
+    e.preventDefault()
     let payload = {
         email : document.getElementById('email').value,
         msj: document.getElementById('msj').value,

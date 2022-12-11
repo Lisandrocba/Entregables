@@ -9,7 +9,7 @@
   <body>
     <h2 class="text-center mt-3">Lista de productos</h2>
     <div class="container">
-        <form onsubmit="return addProd(this)">
+        <form onsubmit="return addProd(event)">
             <div>
                 <label class="form-label">Nombre del Producto</label>
                 <input class="form-control" id="nombreProducto" />
@@ -55,7 +55,7 @@
             </tbody>
          </table>
     
-        <form class="row gx-5 container" onsubmit="return addMsj(this)">
+        <form class="row gx-5 container" onsubmit='return addMsj(event)'>
             <input type="text" id="email" class="col-3 m-1" placeholder="Email">
             <input type="text" id="msj" class="col-6 m-1" placeholder="Ingrese su mensaje">
             <input type="submit" class="col m-1" >
