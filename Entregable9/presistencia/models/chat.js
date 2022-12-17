@@ -25,7 +25,6 @@ const chatSchema = mongoose.Schema({
     },
     text: {
         type: String,
-        required: true
     }
 })
 

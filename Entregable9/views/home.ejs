@@ -61,13 +61,48 @@
         <li class="list-group-item border border-light bg-dark text-white text-center">And a fifth one</li>
       </ul>
     </div>
+    <legend class="text-success fs-1 text-center mb-1">
+      Chat
+    </legend>
+    <div class="container">
+      <form action="" class="formChat" id="formChat">
+        <div class="d-flex flex-row">
+          <input
+          type="text"
+          name="msj"
+          class="form-control bg-dark text-white"
+          id="msj"
+          aria-describedby="Mensaje"
+          />
+          <button class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </div>
+
+
+
+    <!-- scripts -->
+    <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+    <!-- socket io -->
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io();
+      let socket = io();
+      let form = document.getElementById('formChat')
+      let msj = document.getElementById('msj')
+
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        console.log(msj.value)
+        if(msj.value){
+          socket.emit('chat', msj.value)
+          msj.value = ''
+        }
+      })
     </script>
   </body>
 </html>

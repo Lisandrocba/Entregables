@@ -5,10 +5,16 @@ import productRouter from "./routes/productsRouter.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import { dbConnect } from "./presistencia/dbConfig.js";
 import http from "http";
+import { ChatMongoDaos } from "./presistencia/daos/chatMongoDaous.js";
+import {Server} from 'socket.io';
+
+
 
 const app = express();
 const server = http.createServer(app);
 const PORT = 8080;
+const io = new Server(server)
+const chatMongo = new ChatMongoDaos();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,19 +41,51 @@ app.get("/", (req,res)=>{
     res.render("login")
 })
 
-app.post("/session",(req,res)=>{
+app.post("/session",async (req,res)=>{
    for(const key in req.body){
     req.session[key] = req.body[key]
+    req.session[key] = req.body[key]
+    req.session[key] = req.body[key]
+    req.session[key] = req.body[key]
+    req.session[key] = req.body[key]
    }
+   const name = req.session.nombre
+   const lastName = req.session.apellido
+   const edad = req.session.edad;
+   const alias = req.session.alias;
+   const avatar = req.session.avatar;
+   
+   const obj = {author: {name, lastName, edad, alias, avatar}, text : ''};
+   if(obj.length !== 0){
+    await chatMongo.create(obj)
+   }
+
     res.render("home", {nombre: req.session.nombre})
 })
 
-try {
-  await dbConnect();
-  console.log("Conectado a la base de datos");
-  server.listen(PORT, () => {
-    console.log(`escuchando en el puerto ${PORT}`);
-  });
-} catch (e) {
-  console.log(e);
-}
+
+//socket io chat
+
+io.on('connection',async (socket)=>{
+  console.log('usuario conectado')|89
+  socket.on('chat', async(msj)=>{
+        const mensaje = msj
+        console.log(mensaje)
+        //await chatMongo.create(obj);
+      })
+      
+      const response = await chatMongo.getAll()
+      socket.emit('chat', response)
+    })
+
+
+
+    try {
+      await dbConnect();
+      console.log("Conectado a la base de datos");
+      server.listen(PORT, () => {
+        console.log(`escuchando en el puerto ${PORT}`);
+      });
+    } catch (e) {
+      console.log(e);
+    }
